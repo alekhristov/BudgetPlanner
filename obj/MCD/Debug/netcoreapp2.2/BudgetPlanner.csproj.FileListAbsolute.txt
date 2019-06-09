@@ -1,0 +1,6 @@
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.csprojAssemblyReference.cache
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.csproj.CoreCompileInputs.cache
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.RazorAssemblyInfo.cache
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.RazorAssemblyInfo.cs
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.AssemblyInfoInputs.cache
+C:\Users\alekhristov\source\repos\BudgetPlanner\obj\MCD\Debug\netcoreapp2.2\BudgetPlanner.AssemblyInfo.cs
