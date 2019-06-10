@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BudgetPlanner.Migrations
 {
     [DbContext(typeof(BudgetPlannerDbContext))]
-    [Migration("20190610213059_InitialCreate")]
+    [Migration("20190610214001_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,36 +18,14 @@ namespace BudgetPlanner.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity("BudgetPlanner.Data.Models.ApplicationUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Age");
-
-                    b.Property<string>("Gender")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<int>("PaymentId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
-
-                    b.ToTable("User");
-                });
-
             modelBuilder.Entity("BudgetPlanner.Data.Models.Budget", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("ApplicationUserId");
+
+                    b.Property<string>("ApplicationUserId1");
 
                     b.Property<decimal>("AvailableAmount");
 
@@ -60,7 +38,7 @@ namespace BudgetPlanner.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId1");
 
                     b.ToTable("Budgets");
                 });
@@ -187,6 +165,9 @@ namespace BudgetPlanner.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -225,6 +206,8 @@ namespace BudgetPlanner.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -298,18 +281,32 @@ namespace BudgetPlanner.Migrations
 
             modelBuilder.Entity("BudgetPlanner.Data.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("BudgetPlanner.Data.Models.Payment", "Payment")
-                        .WithOne("ApplicationUser")
-                        .HasForeignKey("BudgetPlanner.Data.Models.ApplicationUser", "PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Gender")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("PaymentId");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
+
+                    b.ToTable("User");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("BudgetPlanner.Data.Models.Budget", b =>
                 {
                     b.HasOne("BudgetPlanner.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Budgets")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId1");
                 });
 
             modelBuilder.Entity("BudgetPlanner.Data.Models.Category", b =>
@@ -378,6 +375,14 @@ namespace BudgetPlanner.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BudgetPlanner.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("BudgetPlanner.Data.Models.Payment", "Payment")
+                        .WithOne("ApplicationUser")
+                        .HasForeignKey("BudgetPlanner.Data.Models.ApplicationUser", "PaymentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -1,10 +1,10 @@
-﻿using BudgetPlanner.Data.Models.Abstracts;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BudgetPlanner.Data.Models
 {
-    public class ApplicationUser : ModelBase
+    public class ApplicationUser : IdentityUser
     {
         public ApplicationUser()
         {
