@@ -28,8 +28,13 @@ namespace BudgetPlanner.Data
                 .WithMany(b => b.Categories);
 
             builder
+                .Entity<Income>()
+                .HasOne(i => i.Budget)
+                .WithMany(b => b.Incomes);
+
+            builder
                 .Entity<Budget>()
-                .HasOne(b => b.User)
+                .HasOne(b => b.ApplicationUser)
                 .WithMany(u => u.Budgets);
 
             builder

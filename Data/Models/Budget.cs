@@ -10,6 +10,7 @@ namespace BudgetPlanner.Data.Models
         public Budget()
         {
             this.Incomes = new HashSet<Income>();
+            this.Categories = new HashSet<Category>();
         }
 
         public Month Month { get; set; }
@@ -22,9 +23,9 @@ namespace BudgetPlanner.Data.Models
         [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
 
-        public int UserId { get; set; }
+        public int ApplicationUserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         /// <summary>
         /// Navigation property - represents related entity
