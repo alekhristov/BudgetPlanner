@@ -26,7 +26,7 @@ namespace BudgetPlanner.Data.Models
         /// <summary>
         /// Navigation property - represents related entity
         /// </summary>
-        ICollection<Budget> Budgets { get; set; }
+        public ICollection<Budget> Budgets { get; set; }
     }
 
     public enum Gender

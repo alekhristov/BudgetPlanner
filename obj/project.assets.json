@@ -12418,11 +12418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alekhristov\\source\\repos\\BudgetPlanner\\BudgetPlanner.csproj",
+      "projectUniqueName": "C:\\Users\\alekhristov\\Desktop\\BudgetPlanner\\BudgetPlanner.csproj",
       "projectName": "BudgetPlanner",
-      "projectPath": "C:\\Users\\alekhristov\\source\\repos\\BudgetPlanner\\BudgetPlanner.csproj",
+      "projectPath": "C:\\Users\\alekhristov\\Desktop\\BudgetPlanner\\BudgetPlanner.csproj",
       "packagesPath": "C:\\Users\\alekhristov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alekhristov\\source\\repos\\BudgetPlanner\\obj\\",
+      "outputPath": "C:\\Users\\alekhristov\\Desktop\\BudgetPlanner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
