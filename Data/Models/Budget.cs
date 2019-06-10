@@ -1,17 +1,25 @@
 ﻿using BudgetPlanner.Data.Models.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BudgetPlanner.Data.Models
 {
     public class Budget : ModelBase
     {
+        public Budget()
+        {
+            this.Incomes = new HashSet<Income>();
+        }
+
         public Month Month { get; set; }
 
         public decimal PlannedAmount { get; set; }
 
         public decimal AvailableAmount { get; set; }
 
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
 
         public int UserId { get; set; }

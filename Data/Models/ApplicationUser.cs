@@ -13,7 +13,7 @@ namespace BudgetPlanner.Data.Models
 
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Name must be between 2 and 50 symbols")]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
         public int Age { get; set; }
 
