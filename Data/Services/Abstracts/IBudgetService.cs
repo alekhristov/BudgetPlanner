@@ -1,7 +1,5 @@
 ﻿using BudgetPlanner.Data.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BudgetPlanner.Data.Services.Abstracts
@@ -17,5 +15,9 @@ namespace BudgetPlanner.Data.Services.Abstracts
         Task EditBudget(Budget updatedBudget);
 
         Task CopyOldBudget(int budgetId);
+
+        Task<ICollection<Category>> GetCategoriesForBudget(int budgetId);
+
+        Task<ICollection<Income>> GetIncomesForBudget(int budgetId);
     }
 }

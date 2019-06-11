@@ -71,5 +71,15 @@ namespace BudgetPlanner.Data.Services
 
             return budgets;
         }
+
+        public async Task<ICollection<Category>> GetCategoriesForBudget(int budgetId)
+        {
+            return await this.dbContext.Categories.Where(c => c.BudgetId == budgetId).ToListAsync();
+        }
+
+        public async Task<ICollection<Income>> GetIncomesForBudget(int budgetId)
+        {
+            return await this.dbContext.Incomes.Where(i => i.BudgetId == budgetId).ToListAsync();
+        }
     }
 }
