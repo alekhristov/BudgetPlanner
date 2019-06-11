@@ -19,7 +19,7 @@ namespace BudgetPlanner.Data.Models
 
         public Category Category { get; set; }
 
-        public int AplicationUserId { get; set; }
+        public string AplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
     }

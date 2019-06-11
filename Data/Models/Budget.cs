@@ -23,7 +23,7 @@ namespace BudgetPlanner.Data.Models
         [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 

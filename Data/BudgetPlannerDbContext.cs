@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BudgetPlanner.Data
 {
-    public class BudgetPlannerDbContext : IdentityDbContext
+    public class BudgetPlannerDbContext : IdentityDbContext<ApplicationUser>
     {
         public BudgetPlannerDbContext(DbContextOptions<BudgetPlannerDbContext> options)
             : base(options)
