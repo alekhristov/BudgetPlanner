@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using BudgetPlanner.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BudgetPlanner.Data.Services.Abstracts;
+using BudgetPlanner.Data.Services;
 
 namespace BudgetPlanner
 {
@@ -41,6 +43,11 @@ namespace BudgetPlanner
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<BudgetPlannerDbContext>();
+
+            services.AddTransient<IBudgetService, BudgetService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IIncomeService, IncomeService>();
+            services.AddTransient<IPaymentService, PaymentService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
