@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BudgetPlanner.Data.Services.Abstracts;
 using BudgetPlanner.Data.Services;
+using BudgetPlanner.Data.Models;
 
 namespace BudgetPlanner
 {
@@ -40,7 +41,7 @@ namespace BudgetPlanner
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BudgetPlannerDbContext>
                 (options => options.UseSqlite(connection));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<BudgetPlannerDbContext>();
 
@@ -53,7 +54,7 @@ namespace BudgetPlanner
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, BudgetPlannerDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -66,6 +67,8 @@ namespace BudgetPlanner
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            DatabaseInitializer.Initialize(dbContext);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

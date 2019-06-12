@@ -1,5 +1,6 @@
 ﻿using BudgetPlanner.Data.Models;
 using BudgetPlanner.Data.Services.Abstracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -54,9 +55,9 @@ namespace BudgetPlanner.Data.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public Task<ICollection<Category>> GetAllCategories()
+        public async Task<ICollection<Category>> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return await this.dbContext.Categories.ToListAsync();
         }
 
         public async Task<Category> GetCategory(int categoryId)

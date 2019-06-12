@@ -1,0 +1,32 @@
+﻿@using BudgetPlanner.Models
+@model CategoriesViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3><a asp-action="Create" class="btn btn-sm btn-secondary">Create</a></h3>
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Categories == null)
+        {
+            <tr>
+                <td colspan="7" class="text-center">No Model Data</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var categoryName in Model.Categories)
+            {
+                <tr>
+                    <td>@categoryName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
