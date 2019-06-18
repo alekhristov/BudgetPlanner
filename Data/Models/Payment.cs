@@ -10,6 +10,7 @@ namespace BudgetPlanner.Data.Models
 
         [Required]
         [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
 
         [StringLength(100, MinimumLength = 0, ErrorMessage = "Comment must be between 0 and 100 symbols")]
@@ -18,9 +19,5 @@ namespace BudgetPlanner.Data.Models
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
-
-        public string AplicationUserId { get; set; }
-
-        public ApplicationUser ApplicationUser { get; set; }
     }
 }

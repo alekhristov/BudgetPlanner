@@ -52,8 +52,6 @@ namespace BudgetPlanner.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<int>("PaymentId");
-
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
@@ -73,9 +71,6 @@ namespace BudgetPlanner.Migrations
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex");
-
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
 
                     b.ToTable("User");
                 });
@@ -159,6 +154,8 @@ namespace BudgetPlanner.Migrations
 
                     b.Property<string>("AplicationUserId");
 
+                    //b.Property<string>("ApplicationUserId");
+
                     b.Property<int>("CategoryId");
 
                     b.Property<string>("Comment")
@@ -167,6 +164,8 @@ namespace BudgetPlanner.Migrations
                     b.Property<DateTime>("Date");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CategoryId");
 
@@ -284,14 +283,6 @@ namespace BudgetPlanner.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BudgetPlanner.Data.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("BudgetPlanner.Data.Models.Payment", "Payment")
-                        .WithOne("ApplicationUser")
-                        .HasForeignKey("BudgetPlanner.Data.Models.ApplicationUser", "PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("BudgetPlanner.Data.Models.Budget", b =>
                 {
                     b.HasOne("BudgetPlanner.Data.Models.ApplicationUser", "ApplicationUser")
@@ -317,6 +308,10 @@ namespace BudgetPlanner.Migrations
 
             modelBuilder.Entity("BudgetPlanner.Data.Models.Payment", b =>
                 {
+                    /*b.HasOne("BudgetPlanner.Data.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");*/
+
                     b.HasOne("BudgetPlanner.Data.Models.Category", "Category")
                         .WithMany("Payments")
                         .HasForeignKey("CategoryId")

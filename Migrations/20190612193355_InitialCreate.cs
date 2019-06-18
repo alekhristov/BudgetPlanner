@@ -87,8 +87,8 @@ namespace BudgetPlanner.Migrations
                     Amount = table.Column<decimal>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Comment = table.Column<string>(maxLength: 100, nullable: true),
-                    CategoryId = table.Column<int>(nullable: false),
-                    AplicationUserId = table.Column<string>(nullable: true)
+                    CategoryId = table.Column<int>(nullable: false)/*,
+                    AplicationUserId = table.Column<string>(nullable: true)*/
                 },
                 constraints: table =>
                 {
@@ -122,18 +122,18 @@ namespace BudgetPlanner.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Age = table.Column<int>(nullable: false),
-                    Gender = table.Column<string>(nullable: false),
-                    PaymentId = table.Column<int>(nullable: false)
+                    Gender = table.Column<string>(nullable: false)
+                    //,PaymentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
-                    table.ForeignKey(
+                    /*table.ForeignKey(
                         name: "FK_User_Payments_PaymentId",
                         column: x => x.PaymentId,
                         principalTable: "Payments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Cascade);*/
                 });
 
             migrationBuilder.CreateTable(
@@ -283,10 +283,10 @@ namespace BudgetPlanner.Migrations
                 table: "Incomes",
                 column: "BudgetId");
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_Payments_CategoryId",
                 table: "Payments",
-                column: "CategoryId");
+                column: "CategoryId");*/
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -299,11 +299,11 @@ namespace BudgetPlanner.Migrations
                 column: "NormalizedUserName",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
+            /*migrationBuilder.CreateIndex(
                 name: "IX_User_PaymentId",
                 table: "User",
                 column: "PaymentId",
-                unique: true);
+                unique: true);*/
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AspNetUserRoles_User_UserId",

@@ -19,5 +19,7 @@ namespace BudgetPlanner.Data.Services.Abstracts
         Task<ICollection<Category>> GetCategoriesForBudget(int budgetId);
 
         Task<ICollection<Income>> GetIncomesForBudget(int budgetId);
+
+        Task CreateDummyBudget(string userId);
     }
 }

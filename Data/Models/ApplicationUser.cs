@@ -19,9 +19,9 @@ namespace BudgetPlanner.Data.Models
 
         public Gender Gender { get; set; }
 
-        public int PaymentId { get; set; }
+        //public int PaymentId { get; set; }
 
-        public Payment Payment { get; set; }
+        //public Payment Payment { get; set; }
 
         /// <summary>
         /// Navigation property - represents related entity

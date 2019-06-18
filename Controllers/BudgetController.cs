@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BudgetPlanner.Data.Services.Abstracts;
+using BudgetPlanner.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetPlanner.Controllers
 {
-    public class BudgetController : Controller
+    public class BudgetController : AbstractController
     {
         private readonly IBudgetService budgetService;
 
@@ -16,9 +19,17 @@ namespace BudgetPlanner.Controllers
             this.budgetService = budgetService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var budgetsViewModel = new BudgetsViewModel();
+            var userBudgets = await this.budgetService.GetBudgetsForUser(GetUserId());
+
+            foreach (var b in userBudgets)
+            {
+                budgetsViewModel.Budgets.Add(b);
+            }
+
+            return View(budgetsViewModel);
         }
     }
 }

@@ -1,8 +1,36 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using BudgetPlanner.Data.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="">
+        <h1 class="display-4">BudgetPlanner</h1>
+        <p>
+            <strong>BudgetPlanner</strong> helps you to plan the money you spend each month.
+            After creating a monthly budget and tracking your expenses, BudgetPlanner will provide statistics on money you spend
+            and teach you to budget well and spend only within the limits planned.
+        </p>
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <p>
+                <a asp-controller="Budget" asp-action="Index" class="btn btn-lg btn-secondary">Budget</a>
+                <br/><br/>
+                <a asp-controller="Payment" asp-action="Index" class="btn btn-lg btn-primary">Payments</a>
+            </p>
+        }
+        else
+        {
+            <p>
+                All starts with a free registration:<br/>
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-primary">Register »</a>
+                <br/><br/><br/>
+                Already registered?<br/>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-lg btn-secondary">Sign in »</a>
+            </p>
+        }
+    </div>
